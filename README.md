@@ -265,6 +265,18 @@ import myFunction from "./myFunction.js"; //.js extension is not mandatory
 myFunction()
 
 ```
+The snippet below is also equivalent.
+```js
+//---------- myFunction.js ----------
+function myFunction() {...}
+
+export default myFunction();
+
+//---------- main.js ----------
+import myFunction from "./myFunction.js";
+// calling the imported function
+myFunction()
+```
 
 ##### Mixed Named and Default Exports
 ##### Cyclical Dependencies
@@ -318,3 +330,22 @@ ReactDOM.render(<MyApp />, document.querySelector("#root"));
 ```
 
 #### Moving Components into Separate Files
+```js
+//---------- MyInfo.js ----------
+import React from "react";
+
+function MyInfo(){
+	return (
+		
+	);
+}
+
+export default MyInfo;
+
+//---------- index.js ----------
+import React from "react";
+import ReactDOM from "react-dom";
+import MyInfo from "./MyInfo.js";
+
+ReactDOM.render(<MyInfo />, document.querySelector("#root"));
+```
