@@ -216,9 +216,105 @@ add_numbers([1, 2, 3, 4, 5]);
 // This will display: 15
 ```
 
+#### Export and Import
+
+There are 4 types of exports:
+
+- named exports (several per module)
+- default exports (one per module)
+- mixed named & default exports
+- cyclical dependencies
+
+##### Named Exports
+```js
+//---------- lib.js ----------
+export const sqrt = Math.sqrt;
+export function square(x) {
+	return x * x;
+}
+export function diag(x, y) {
+	return sqrt(square(x) + square(y));
+}
+
+//---------- main.js ----------
+import { square, diag } from "lib";
+
+console.log(square(11)); // 121
+console.log(diag(4, 3)); // 5
+```
+Similarly we can import everything from another file.
+
+```js
+//---------- main.js ----------
+import * as lib from "lib.js";
+console.log(lib.square(11)); // 121
+console.log(lib.diag(4, 3)); // 5
+```
+
+##### Default Exports (one per module)
+
+With default exports we can have one export per module.
+
+```js
+//---------- myFunction.js ----------
+export default function () {...};
+
+//---------- main.js ----------
+import myFunction from "./myFunction.js"; //.js extension is not mandatory
+// calling the imported function
+myFunction()
+
+```
+
+##### Mixed Named and Default Exports
+##### Cyclical Dependencies
+
 #### ToDo List
 
 - [ ] Async/Await
 - [ ] Classes
 
 ## React
+
+#### Setup
+The following dependencies are necessary for building react applications.
+
+- `react`
+- `react-dom`
+
+#### ReactDOM and JSX
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+// ReactDOM.render(what to render, where to render)
+ReactDOM.render(<h1>Hello world!</h1>, document.querySelector("#root"));
+```
+
+#### Functional Components
+
+`React` convention is to start each **functional component** with a capital letter and use camel case style.
+
+Each individual component can return **only** one JSX element (we can get around this by wrapping everyting inside a div tag).
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+// functional component
+function MyApp() {
+	// returns JSX for the component
+	return (
+		<ul>
+			<li>item #1</li>
+			<li>item #2</li>
+			<li>item #3</li>
+		</ul>
+	);
+}
+
+ReactDOM.render(<MyApp />, document.querySelector("#root"));
+```
+
+#### Moving Components into Separate Files
