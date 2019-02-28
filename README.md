@@ -1,3 +1,4 @@
+
 # Web Course
 This is a collection of notes from some web development courses focused on **JavaScript**, **ES6** and **React**. For each section there will be links to the appropiate tutorials and other resources.
 
@@ -306,7 +307,7 @@ ReactDOM.render(<h1>Hello world!</h1>, document.querySelector("#root"));
 
 #### Functional Components
 
-`React` convention is to start each **functional component** with a capital letter and use camel case style.
+`React` convention is to start each **functional component** with a capital letter and use camel case style naming.
 
 Each individual component can return **only** one JSX element (we can get around this by wrapping everyting inside a div tag).
 
@@ -349,3 +350,43 @@ import MyInfo from "./MyInfo.js";
 
 ReactDOM.render(<MyInfo />, document.querySelector("#root"));
 ```
+
+#### Styling React with CSS Classes
+```js
+//---------- MyInfo.js ----------
+import React from "react";
+
+function MyInfo(){
+	return (
+		<h1 className="navbar">This is the navbar of the app</h1>
+	);
+}
+
+export default MyInfo;
+
+//---------- style.css ----------
+.navbar {
+	background-color: grey;
+}
+
+//---------- index.js ----------
+import React from "react";
+import ReactDOM from "react-dom";
+import MyInfo from "./MyInfo.js";
+
+ReactDOM.render(<MyInfo />, document.querySelector("#root"));
+```
+
+#### Variables in JSX
+
+```js
+//---------- index.js ----------
+import React from "react";
+import ReactDOM from "react-dom";
+
+name = "Bob"
+lastName = "Peters"
+ReactDOM.render(<p>Hello {`${name} ${lastName}`}</p>, document.querySelector("#root"));
+```
+
+#### Props
